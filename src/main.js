@@ -29,7 +29,7 @@ router.beforeEach((to, from, next) => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         api.getAllUserWhereUID(user.uid).then(response => {
-          if(response.length == 0){
+          if(response.length === 0){
             firebase.auth().signOut()
           }else{
             store.commit('setKaryawan', response)
